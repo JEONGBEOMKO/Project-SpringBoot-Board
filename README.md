@@ -1,8 +1,6 @@
 # Project-SpringBoot-Board
 게시판 -  자바 + 스프링부트와 관련 기술들을 공부
 - IDE: IntelliJ IDEA 2022.2.1 (Community Edition)
-    - Community Edition은 무료지만 강의에서 활용할 스프링 부트 지원 기능이 동작하지 않음
-    - 현업에서 Ultimate Edition 라이선스를 구매하여 지급해 주므로 강의 초점을 이에 맞춤
 - 언어 : Java 17
 - 프레임워크 : Spring boot 2.7.0
 - 빌드 도구 : gradle 7.4.1 (버전 중요하지 않음 - 스프링 부트 설정한 버전에 맞춰서 적합한 gradle 버전 선택됨)
