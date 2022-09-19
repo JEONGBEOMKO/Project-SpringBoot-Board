@@ -1,13 +1,13 @@
-package com.springboard.projectboard;
+package com.spring.projectboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjectSpringBoardApplication {
+public class SpringProjectBoardApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjectSpringBoardApplication.class, args);
+		SpringApplication.run(SpringProjectBoardApplication.class, args);
 	}
 
 }
