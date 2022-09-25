@@ -55,14 +55,14 @@ class ArticleServiceTest {
         SearchType searchType = SearchType.TITLE;
         String searchKeyword = "title";
         Pageable pageable = Pageable.ofSize(20);
-        given(articleRepository.findByTitle(searchKeyword, pageable)).willReturn(Page.empty());
+        given(articleRepository.findByTitleContaining(searchKeyword, pageable)).willReturn(Page.empty());
 
         // When
         Page<ArticleDto> articles = sut.searchArticles(searchType, searchKeyword, pageable);
 
         // Then
         assertThat(articles).isEmpty();
-        then(articleRepository).should().findByTitle(searchKeyword, pageable);
+        then(articleRepository).should().findByTitleContaining(searchKeyword, pageable);
 
     }
     @DisplayName("게시글을 조회하면, 게시글을 반환한다.")
@@ -116,7 +116,7 @@ class ArticleServiceTest {
     }
 
 
-    @DisplayName("게시글의 ID와 수정 정보를 입력하면, 게시글을 수정한다")
+    @DisplayName("게시글의 수정 정보를 입력하면, 게시글을 수정한다")
     @Test
     void givenModifiedArticleInfo_whenUpdatingArticle_thenUpdatesArticle() {
         //Given
