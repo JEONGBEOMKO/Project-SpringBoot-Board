@@ -30,7 +30,7 @@ public class ArticleService {
         }
         return switch (searchType){
             case TITLE -> articleRepository.findByTitleContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case COTENT -> articleRepository.findByContentContaining(searchKeyword, pageable).map(ArticleDto::from);
+            case CONTENT -> articleRepository.findByContentContaining(searchKeyword, pageable).map(ArticleDto::from);
             case ID -> articleRepository.findByUserAccount_UserIdContaining(searchKeyword, pageable).map(ArticleDto::from);
             case NICKNAME -> articleRepository.findByUserAccount_NicknameContaining(searchKeyword, pageable).map(ArticleDto::from);
             case HASHTAG -> articleRepository.findByHashtag("#"+ searchKeyword, pageable).map(ArticleDto::from);
@@ -42,8 +42,6 @@ public class ArticleService {
         return articleRepository.findById(articleId)
                 .map(ArticleWithCommentsDto::from)
                 .orElseThrow(() -> new EntityNotFoundException("게시글이 없습니다 - articleId: "+ articleId));
-
-
     }
 
     public void saveArticle(ArticleDto dto) {
