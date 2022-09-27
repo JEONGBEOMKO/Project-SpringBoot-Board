@@ -44,6 +44,7 @@ class FormDataEncoderTest {
         String result = formDataEncoder.encode(obj);
 
         // Then
+        System.out.println(result);
         assertThat(result).isEqualTo(
                 "str=This%20'is'%20%22test%22%20string." +
                         "&listStr1=%5Bhello,my,friend%5D" +

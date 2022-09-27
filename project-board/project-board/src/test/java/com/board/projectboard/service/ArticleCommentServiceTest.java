@@ -2,33 +2,21 @@ package com.board.projectboard.service;
 
 import com.board.projectboard.domain.Article;
 import com.board.projectboard.domain.ArticleComment;
-
 import com.board.projectboard.domain.UserAccount;
 import com.board.projectboard.dto.ArticleCommentDto;
-import com.board.projectboard.dto.ArticleDto;
 import com.board.projectboard.dto.UserAccountDto;
 import com.board.projectboard.repository.ArticleCommentRepository;
 import com.board.projectboard.repository.ArticleRepository;
-import com.board.projectboard.repository.UserAccountRepository;
-import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -42,7 +30,6 @@ class ArticleCommentServiceTest {
 
     @Mock private ArticleRepository articleRepository;
     @Mock private ArticleCommentRepository articleCommentRepository;
-    @Mock private UserAccountRepository userAccountRepository;
 
     @DisplayName("게시글 ID로 조회하면, 해당하는 댓글 리스트를 반환한다.")
     @Test
@@ -68,7 +55,6 @@ class ArticleCommentServiceTest {
         // Given
         ArticleCommentDto dto = createArticleCommentDto("댓글");
         given(articleRepository.getReferenceById(dto.articleId())).willReturn(createArticle());
-        given(userAccountRepository.getReferenceById(dto.userAccountDto().userId())).willReturn(createUserAccount());
         given(articleCommentRepository.save(any(ArticleComment.class))).willReturn(null);
 
         // When
@@ -76,7 +62,6 @@ class ArticleCommentServiceTest {
 
         // Then
         then(articleRepository).should().getReferenceById(dto.articleId());
-        then(userAccountRepository).should().getReferenceById(dto.userAccountDto().userId());
         then(articleCommentRepository).should().save(any(ArticleComment.class));
     }
 
@@ -92,7 +77,6 @@ class ArticleCommentServiceTest {
 
         // Then
         then(articleRepository).should().getReferenceById(dto.articleId());
-        then(userAccountRepository).shouldHaveNoInteractions();
         then(articleCommentRepository).shouldHaveNoInteractions();
     }
 
@@ -135,14 +119,13 @@ class ArticleCommentServiceTest {
     void givenArticleCommentId_whenDeletingArticleComment_thenDeletesArticleComment() {
         // Given
         Long articleCommentId = 1L;
-        String userId = "Jbk";
-        willDoNothing().given(articleCommentRepository).deleteByIdAndUserAccount_UserId(articleCommentId, userId);
+        willDoNothing().given(articleCommentRepository).deleteById(articleCommentId);
 
         // When
-        sut.deleteArticleComment(articleCommentId, userId);
+        sut.deleteArticleComment(articleCommentId);
 
         // Then
-        then(articleCommentRepository).should().deleteByIdAndUserAccount_UserId(articleCommentId, userId);
+        then(articleCommentRepository).should().deleteById(articleCommentId);
     }
 
 
@@ -161,10 +144,10 @@ class ArticleCommentServiceTest {
 
     private UserAccountDto createUserAccountDto() {
         return UserAccountDto.of(
-                "Jbk",
+                "jbk",
                 "password",
-                "Jbk@mail.com",
-                "Uno",
+                "jbk@mail.com",
+                "Jbk",
                 "This is memo",
                 LocalDateTime.now(),
                 "jbk",
@@ -175,7 +158,7 @@ class ArticleCommentServiceTest {
 
     private ArticleComment createArticleComment(String content) {
         return ArticleComment.of(
-                createArticle(),
+                Article.of(createUserAccount(), "title", "content", "hashtag"),
                 createUserAccount(),
                 content
         );
@@ -183,10 +166,10 @@ class ArticleCommentServiceTest {
 
     private UserAccount createUserAccount() {
         return UserAccount.of(
-                "uno",
+                "jbk",
                 "password",
-                "uno@email.com",
-                "Uno",
+                "jbk@email.com",
+                "Jbk",
                 null
         );
     }
@@ -198,8 +181,4 @@ class ArticleCommentServiceTest {
                 "#java"
         );
     }
-
-
-
-
 }
