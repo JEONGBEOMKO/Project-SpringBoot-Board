@@ -26,6 +26,7 @@ public class UserAccount extends AuditingFields {
     @Setter @Column(length = 100) private String nickname;
     @Setter private String memo;
 
+
     protected UserAccount() {}
 
     private UserAccount(String userId, String userPassword, String email, String nickname, String memo) {
@@ -43,14 +44,13 @@ public class UserAccount extends AuditingFields {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UserAccount that)) return false;
-        return this.getUserId() != null && this.getUserId().equals(that.getUserId());
+        if (!(o instanceof UserAccount userAccount)) return false;
+        return userId != null && userId.equals(userAccount.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getUserId());
+        return Objects.hash(userId);
     }
-
 
 }
