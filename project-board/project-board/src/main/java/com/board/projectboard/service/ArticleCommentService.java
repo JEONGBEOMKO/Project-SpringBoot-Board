@@ -1,12 +1,9 @@
 package com.board.projectboard.service;
 
 import com.board.projectboard.dto.ArticleCommentDto;
-import com.board.projectboard.dto.ArticleDto;
 import com.board.projectboard.repository.ArticleCommentRepository;
 import com.board.projectboard.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +32,7 @@ public class ArticleCommentService {
     public void updateArticleComment(ArticleCommentDto dto) {
     }
 
-    public void deleteArticleComment(Long articleCommentId, String userId) {
+    public void deleteArticleComment(Long articleCommentId) {
     }
 
 }
