@@ -6,8 +6,6 @@ import com.board.projectboard.domain.UserAccount;
 
 import java.time.LocalDateTime;
 
-
-
 public record ArticleCommentDto(
         Long id,
         Long articleId,
