@@ -45,7 +45,6 @@
 
             <attr sel="tbody" th:remove="all-but-first">
                 <attr sel="tr[0]" th:each="article : ${articles}">
-                    <attr sel="td.id/a" th:text="${article.id}"  />
                     <attr sel="td.title/a" th:text="${article.title}" th:href="@{'/articles/' + ${article.id}}" />
                     <attr sel="td.hashtag" th:text="${article.hashtag}" />
                     <attr sel="td.user-id" th:text="${article.nickname}" />

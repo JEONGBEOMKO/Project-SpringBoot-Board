@@ -85,7 +85,6 @@ class ArticleCommentServiceTest {
         then(articleCommentRepository).shouldHaveNoInteractions();
     }
 
-
     @DisplayName("댓글 정보를 입력하면, 댓글을 수정한다.")
     @Test
     void givenArticleCommentInfo_whenUpdatingArticleComment_thenUpdatesArticleComment() {
@@ -125,14 +124,13 @@ class ArticleCommentServiceTest {
     void givenArticleCommentId_whenDeletingArticleComment_thenDeletesArticleComment() {
         // Given
         Long articleCommentId = 1L;
-        String userId = "jbk";
-        willDoNothing().given(articleCommentRepository).deleteByIdAndUserAccount_UserId(articleCommentId, userId);
+        willDoNothing().given(articleCommentRepository).deleteById(articleCommentId);
 
         // When
-        sut.deleteArticleComment(articleCommentId, userId);
+        sut.deleteArticleComment(articleCommentId);
 
         // Then
-        then(articleCommentRepository).should().deleteByIdAndUserAccount_UserId(articleCommentId, userId);
+        then(articleCommentRepository).should().deleteById(articleCommentId);
     }
 
 
