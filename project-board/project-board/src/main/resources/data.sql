@@ -1,8 +1,8 @@
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values
-('jbk', '{noop}1thffntus!qwer', 'Jbk', 'jbk@mail.com', 'I am Jbk.', now(), 'jbk', now(), 'jbk')
+('jbk', '{noop}1thffntus!', 'Jbk', 'jbk@mail.com', 'I am Jbk.', now(), 'jbk', now(), 'jbk')
 ;
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values
-('jbk2', '{noop}asdf1234', 'Jbk2', 'jbk2@mail.com', 'I am Jbk2.', now(), 'jbk2', now(), 'jbk2')
+('jbk2', '{noop}1thffntus!', 'Jbk2', 'jbk2@mail.com', 'I am Jbk2.', now(), 'jbk2', now(), 'jbk2')
 ;
 
 -- 123 게시글
