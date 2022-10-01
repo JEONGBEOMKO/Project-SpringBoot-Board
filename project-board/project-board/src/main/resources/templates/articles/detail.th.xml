@@ -18,6 +18,9 @@
         </attr>
 
         <attr sel=".article-id" th:name="articleId" th:value="*{id}" />
+        <attr sel="#submitForm" th:action="@{/comments/new}" th:method="post">
+            <attr sel="#editorTxt" th:name="content" />
+        </attr>
         <attr sel="#comment-form" th:action="@{/comments/new}" th:method="post">
             <attr sel="#comment-textbox" th:name="content" />
         </attr>
