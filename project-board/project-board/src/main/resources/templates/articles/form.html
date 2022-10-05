@@ -8,6 +8,8 @@
     <title>새 게시글 등록</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
 <body>
@@ -30,9 +32,9 @@
             </div>
         </div>
         <div class="row mb-3 justify-content-md-center">
-            <label for="content" class="col-sm-2 col-lg-1 col-form-label text-sm-end">본문</label>
+            <label for="editorTxt" class="col-sm-2 col-lg-1 col-form-label text-sm-end">본문</label>
             <div class="col-sm-8 col-lg-9">
-                <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+                <textarea class="form-control" id="editorTxt" name="content" rows="5" required></textarea>
             </div>
         </div>
         <div class="row mb-4 justify-content-md-center">
@@ -54,6 +56,27 @@
     <hr>
     푸터 삽입부
 </footer>
+<script>
+       $(".btn").on("click", function() {
+           oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", [])
+           let content = document.getElementById("editorTxt").value
+           console.log(content);
+        });
+    </script>
+
+<script type="text/javascript">
+    let oEditors = [];
+
+        nhn.husky.EZCreator.createInIFrame({
+         oAppRef: oEditors,
+         elPlaceHolder: "editorTxt",
+         sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+         fCreator: "createSEditor2",
+         htParams : {fOnBeforeUnload : function(){}} // 이페이지 나오기 alert 삭제
+        });
+    </script>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
