@@ -17,7 +17,7 @@
 - Ideolog(203.0.30.0)
 - Spring Boot Assistant(0.14.0)
 
-**강의에서 사용한 IntelliJ 추가 다운로드 플러그인(색상/테마)**
+**프로젝트에서 사용한 IntelliJ 추가 다운로드 플러그인(색상/테마)**
 
 - ANSI Highlighter(1.2.4) → 이후 유료
 - Atom Material Icons(64.0.0)
