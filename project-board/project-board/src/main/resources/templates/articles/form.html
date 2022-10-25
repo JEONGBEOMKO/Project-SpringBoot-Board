@@ -43,6 +43,15 @@
                 <input type="text" class="form-control" id="hashtag" name="hashtag">
             </div>
         </div>
+        <div class="row mb-4 justify-content-md-center">
+            <label for="inputFile" class="col-sm-2 col-lg-1 col-form-label text-sm-end">첨부 파일</label>
+            <div class="col-sm-8 col-lg-9">
+                <div class="custom-file" id="inputFile">
+                    <input name="file" type="file" class="custom-file-input" id="customFile" />
+                    <label class="custom-file-label" for="customFile">파일을 선택해 주세요.</label>
+                </div>
+            </div>
+        </div>
         <div class="row mb-5 justify-content-md-center">
             <div class="col-sm-10 d-grid gap-2 d-sm-flex justify-content-sm-end">
                 <button type="submit" class="btn btn-primary" id="submit-button">저장</button>
@@ -59,9 +68,16 @@
 <script>
        $(".btn").on("click", function() {
            oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", [])
-           let content = document.getElementById("editorTxt").value
-           console.log(content);
+           //let content = document.getElementById("editorTxt").value
+           //console.log(content);
+
         });
+    </script>
+<script>
+      $('.custom-file-input').on('change', function () {
+        var fileName = $(this).val().split('\\').pop();
+        $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+      });
     </script>
 
 <script type="text/javascript">
@@ -74,7 +90,7 @@
 
          htParams : {
 
-          bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                 bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
                 bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
                 bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용),
@@ -88,6 +104,8 @@
               },
               fCreator: "createSEditor2"
         });
+
+
     </script>
 
 
