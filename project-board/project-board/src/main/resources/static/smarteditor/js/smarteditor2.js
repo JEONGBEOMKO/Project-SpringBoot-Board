@@ -5486,11 +5486,11 @@ nhn.husky.SE_EditingArea_WYSIWYG = jindo.$Class({
 
 		// 편집내용이 없는 경우 커서홀더로 대체
 		if(sContent.replace(/[\r\n\t\s]*/,"") === ""){
-			if(this.oApp.sLineBreaker !== "BR"){
+			/*if(this.oApp.sLineBreaker !== "BR"){
 				sCursorHolder = "<p>" + sCursorHolder + "</p>";
 			}
 			sContent = sCursorHolder;
-		}
+		}*/
 		this.iframe.contentWindow.document.body.innerHTML = sContent;
 
 		// [COM-1142] IE의 경우 <p>&nbsp;</p> 를 <p></p> 로 변환

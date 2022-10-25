@@ -192,7 +192,7 @@ class ArticleServiceTest {
     void givenModifiedArticleInfo_whenUpdatingArticle_thenUpdatesArticle() {
         //Given
         Article article = createArticle();
-        ArticleDto dto = createArticleDto("새 타이틀", "새 내용", "#springboot");
+        ArticleDto dto = createArticleDto("새 타이틀", "새 내용", "#springboot",213L);
         given(articleRepository.getReferenceById(dto.id())).willReturn(article);
         given(userAccountRepository.getReferenceById(dto.userAccountDto().userId())).willReturn(dto.userAccountDto().toEntity());
 
@@ -212,7 +212,7 @@ class ArticleServiceTest {
     @Test
     void givenNonexistentArticleInfo_whenUpdatingArticle_thenLogsWarningAndDoesNothing() {
         // Given
-        ArticleDto dto = createArticleDto("새 타이틀", "새 내용", "#springboot");
+        ArticleDto dto = createArticleDto("새 타이틀", "새 내용", "#springboot", 123L);
         given(articleRepository.getReferenceById(dto.id())).willThrow(EntityNotFoundException.class);
 
         // When
@@ -283,7 +283,8 @@ class ArticleServiceTest {
                 createUserAccount(),
                 "title",
                 "content",
-                "#java"
+                "#java",
+                123L
         );
         ReflectionTestUtils.setField(article, "id", 1L);
 
@@ -291,16 +292,17 @@ class ArticleServiceTest {
     }
 
     private ArticleDto createArticleDto() {
-        return createArticleDto("title", "content", "#java");
+        return createArticleDto("title", "content", "#java",123L);
     }
 
-    private ArticleDto createArticleDto(String title, String content, String hashtag) {
+    private ArticleDto createArticleDto(String title, String content, String hashtag, Long fileId) {
         return ArticleDto.of(
                 1L,
                 createUserAccountDto(),
                 title,
                 content,
                 hashtag,
+                fileId,
                 LocalDateTime.now(),
                 "Jbk",
                 LocalDateTime.now(),
