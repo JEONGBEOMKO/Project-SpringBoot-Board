@@ -66,12 +66,7 @@
     푸터 삽입부
 </footer>
 <script>
-       $(".btn").on("click", function() {
-           oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", [])
-           //let content = document.getElementById("editorTxt").value
-           //console.log(content);
 
-        });
     </script>
 <script>
       $('.custom-file-input').on('change', function () {
@@ -103,6 +98,13 @@
               fOnAppLoad : function(){
               },
               fCreator: "createSEditor2"
+        });
+
+        $(".btn").on("click", function() {
+           oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", [])
+           //let content = document.getElementById("editorTxt").value
+           //console.log(content);
+
         });
 
 
