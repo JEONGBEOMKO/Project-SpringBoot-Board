@@ -62,11 +62,18 @@ public class ArticleController {
     }
 
     @GetMapping("/{articleId}")
-    public  String article(@PathVariable Long articleId, ModelMap map) {
+    public  String article(
+            @PathVariable Long articleId,
+            @RequestParam(required = false) String searchValue,
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+            ModelMap map) {
         ArticleWithCommentsResponse article = ArticleWithCommentsResponse.from(articleService.getArticleWithComments(articleId));
+        Page<ArticleResponse> articles = articleService.searchArticlesViaHashtag(searchValue, pageable).map(ArticleResponse::from);
+        List<Integer> barNumbers = paginationService.getPaginationBarNumbers(pageable.getPageNumber(), articles.getTotalPages());
 
         map.addAttribute("article", article);
         map.addAttribute("articleComments", article.articleCommentsResponse());
+        map.addAttribute("paginationBarNumbers", barNumbers);
         map.addAttribute("totalCount", articleService.getArticleCount());
 
         return "articles/detail";

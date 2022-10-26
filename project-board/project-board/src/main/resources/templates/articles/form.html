@@ -76,6 +76,7 @@
     </script>
 
 <script type="text/javascript">
+window.onload = function() {
     let oEditors = [];
 
         nhn.husky.EZCreator.createInIFrame({
@@ -102,11 +103,13 @@
 
         $(".btn").on("click", function() {
            oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", [])
-           //let content = document.getElementById("editorTxt").value
+           let content = document.getElementById("editorTxt").value.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/gi, "");
+
            //console.log(content);
 
+           //alert(content);
         });
-
+}
 
     </script>
 
